@@ -30,26 +30,34 @@ url: httsp://wotosts.github.io # the base hostname & protocol for your site, e.g
 github_username:  wotosts
 
 # Build settings
-theme: minimal-mistakes-jekyll
+theme: "minimal-mistakes-jekyll"
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
-  - jekyll-feed
+  - jekyll-remote-theme
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      read_time: false
+      comments: true
+      share: true
+      related: true
+      show_date: true
+      author_profile: true
+search: true
+
+author:
+  name: "wotosts"
+  bio: "사부작 사부작"
+  location: "대한민국 어딘가"
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/wotosts"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "tosts522@gmail.com"
