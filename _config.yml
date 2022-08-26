@@ -30,7 +30,7 @@ url: httsp://wotosts.github.io # the base hostname & protocol for your site, e.g
 github_username:  wotosts
 
 # Build settings
-theme: minima
+theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
 
