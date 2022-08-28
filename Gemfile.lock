@@ -268,8 +268,9 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  github-pages (~> 227)
+  github-pages
   http_parser.rb (~> 0.6.0)
+  jekyll-include-cache
   jekyll-remote-theme
   minimal-mistakes-jekyll!
   tzinfo (~> 1.2)
