@@ -1,6 +1,8 @@
 # main links
-# main:
-#   - title: "Posts"
-#     url: ""
-  # - title: "Category"
-  #   url: "/category/"
+main:
+  - title: "Posts"
+    url: /posts/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/

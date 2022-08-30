@@ -20,7 +20,7 @@
 
 title: "Treasure Box"
 title_separator: "-"
-sutitle: "in Wonderland"
+subtitle: "즨의 개발일기"
 email: tosts522@gmail.com
 name: "즨"
 description: >- # this means to ignore newlines until "baseurl:"
@@ -34,12 +34,18 @@ remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
 minimal_mistakes_skin: "contrast"
 
 author:
   name: "즨"
-  avatar: "/profile.png"
+  avatar: "/assets/profile.png"
   bio: "타닥타닥, 사부작 사부작, 멍멍"
   location: "대한민국 어딘가"
   email:
@@ -92,7 +98,6 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
 # Conversion
 markdown: kramdown
 highlighter: rouge
@@ -111,6 +116,12 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
 
 defaults:
   # _posts
@@ -145,6 +156,7 @@ defaults:
       sidebar:
         nav: "docs"
 search: true
+breadcrumbs: true
 
 category_archive:
   type: liquid
@@ -159,4 +171,13 @@ paginate: 5 # 첫 페이지에보여줄 최근 게시물 수를 지정
 paginate_path: /page:num/
 timezone: Asia/Seoul
 
-og_image                 : "/profile.png"
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+
+og_image                 : "/assets/profile.png"
