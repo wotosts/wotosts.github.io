@@ -7,6 +7,7 @@ tags:
 - hilt
 toc: true
 toc_label: "UI 테스트 환경 구축하기 - Hilt"
+toc_sticky: true
 ---
 
 요즘에는 거의 필수인 것 같지만 작은 스타트업에서 테스트 코드를 짜면서 개발하는 것이 쉽지는 않은 것 같습니다. 하지만 테스트 코드의 필요성을 느낄 때가 있더라구요.
@@ -176,7 +177,6 @@ private fun launchActivity(): ActivityScenario<SampleActivity> {
 }
 ```
 1. `ActivityScenario`를 이용하여 SampleActivity를 실행하고
-
 2. dataBindingRule이 ActivityScenario를 모니터하도록 설정
 
 <br>
