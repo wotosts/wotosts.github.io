@@ -155,7 +155,7 @@ internal class SampleActivityTest {
 2. `DataBindingIdlingResourceRule()`
 
 	DataBinding을 사용할 경우, 업데이트할 데이터가 더 이상 없을 때 테스트를 진행하도록 하는 테스트룰 적용  
-    [DataBindingIdlingResourceRule code](https://github.com/android/architecture-components-samples/blob/7f861fd45d158e6277a3c35163c7f663e135b2cf/GithubBrowserSample/app/src/androidTest/java/com/android/example/github/util/DataBindingIdlingResourceRule.kt)
+    [DataBindingIdlingResourceRule code](https://github.com/android/architecture-components-samples/blob/7f861fd45d158e6277a3c35163c7f663e135b2cf/GithubBrowserSample/app/src/androidTest/java/com/android/example/github/util/DataBindingIdlingResourceRule.kt)  
     [DataBindingIdlingResource code](https://github.com/android/architecture-components-samples/blob/7f861fd45d158e6277a3c35163c7f663e135b2cf/GithubBrowserSample/app/src/androidTest/java/com/android/example/github/util/DataBindingIdlingResource.kt)
 3. 테스트 클래스에서 직접 값을 조작할 LiveData 선언
 4. viewModel의 LiveData(isLogin) stub
