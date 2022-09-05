@@ -5,12 +5,14 @@ categories:
 tags:
 - test
 - hilt
+toc: true
+toc_label: "UI 테스트 환경 구축하기 - Hilt"
 ---
 
-요즘에는 거의 필수인 것 같지만 작은 스타트업에서 테스트 코드를 짜면서 개발하는 것이 쉽지는 않은 것 같습니다. 하지만 테스트 코드의 필요성을 느낄 때가 있더라구요. 
-이번에도 프로젝트를 진행하면서 테스트 코드(일부)를 작성했는데, 이를 수행할 환경을 만드는 것에 생각보다 많은 시간을 소비했습니다. 
+요즘에는 거의 필수인 것 같지만 작은 스타트업에서 테스트 코드를 짜면서 개발하는 것이 쉽지는 않은 것 같습니다. 하지만 테스트 코드의 필요성을 느낄 때가 있더라구요.
+이번에도 프로젝트를 진행하면서 테스트 코드(일부)를 작성했는데, 이를 수행할 환경을 만드는 것에 생각보다 많은 시간을 소비했습니다.
 
-우리의 시간은 소중하니까요😎, 삽질을 줄이고자 Hilt를 이용한 프로젝트에서 UI 테스트 코드를 작성(**실행!**)하기 위한 기본적인 것들을 정리했습니다. 
+우리의 시간은 소중하니까요😎, 삽질을 줄이고자 Hilt를 이용한 프로젝트에서 UI 테스트 코드를 작성(**실행!**)하기 위한 기본적인 것들을 정리했습니다.
 
 ---
 
@@ -39,10 +41,10 @@ androidTestImplementation("androidx.test.ext:junit")
 *  UI 테스트 작성을 위한 espresso
 * Hilt를 사용했으므로, hilt-android-testing
 * Test runner, rules
-* Mockk 
+* Mockk
 * Junit4
 
-Mock 라이브러리는 편한 것을 사용하시면 될 것 같아요. 
+Mock 라이브러리는 편한 것을 사용하시면 될 것 같아요.
 <br>
 
 ### TestApplication
@@ -79,7 +81,7 @@ android {
 
 ## Activity 테스트 코드 작성
 
-아래와 같이 구성된, 문의사항을 작성할 수 있는 Activity가 있습니다. 
+아래와 같이 구성된, 문의사항을 작성할 수 있는 Activity가 있습니다.
 <p align="center">
 	<img src="/assets/images/android-test-with-hilt-image1.png" width="50%" />
 </p>
@@ -90,10 +92,10 @@ android {
 <div class="notice">
 1. 로그인 상태 - 이메일 작성란 안보임<br>
 2. 로그아웃 상태 - 이메일 작성란 보임
-</div> 
+</div>
 
 
-먼저, 테스트를 실행할 수 있도록 준비 작업을 합니다. 
+먼저, 테스트를 실행할 수 있도록 준비 작업을 합니다.
 ``` kotlin
 @HiltAndroidTest  // 1
 @RunWith(AndroidJUnit4::class)  // 2
@@ -108,7 +110,7 @@ internal class SampleActivityTest {
 ```
 1. `@HiltAndroidTest` hilt를 사용하는 클래스를 테스트
 2. `@RunWith(AndroidJUnit4::class)` 해당 클래스는 AndroidJUnit4 러너로 동작
-3. `HiltAndroidRule` hilt를 사용하는 테스트 클래스 룰 적용. 
+3. `HiltAndroidRule` hilt를 사용하는 테스트 클래스 룰 적용.
 해당 코드 아래의 @BindValue 가 적용되지 않을 수 있어, order = 0 으로 설정하여 가장 먼저 적용
 4. mock ViewModel
 `@BindValue` 어노테이션을 사용하여 Activity가 참조하는 viewModel을 대체
@@ -125,9 +127,9 @@ internal class SampleActivityTest {
 
 이메일 입력란의 표시 여부는 `isLogin: LiveData<Boolean>` 값에 의해 바뀐다고 하였으니, `isLogin` 값을 지정해 줄 필요가 있습니다.
 (Fake를 사용하지 않는다면) viewModel은 현재 mock 형태이기 때문에 아무런 동작을 하지 않으니, viewModel.isLogin 값 또한 바뀌지 않습니다.
- 
+
 그러니 viewModel.isLogin 대신 다른 조작 가능한 LiveData를 사용해야합니다.
-  
+
 ```kotlin
  // ...		
 
@@ -147,12 +149,12 @@ internal class SampleActivityTest {
 
  //...
 ```
-1. `InstantTaskExecutorRule()` 
+1. `InstantTaskExecutorRule()`
 
 	LiveData 등의 아키텍쳐 컴포넌트가 동일한 스레드에서 동작하도록 하는 테스트룰 적용
-2. `DataBindingIdlingResourceRule()` 
+2. `DataBindingIdlingResourceRule()`
 
-	DataBinding을 사용할 경우, 업데이트할 데이터가 더 이상 없을 때 테스트를 진행하도록 하는 테스트룰 적용
+	DataBinding을 사용할 경우, 업데이트할 데이터가 더 이상 없을 때 테스트를 진행하도록 하는 테스트룰 적용  
     [DataBindingIdlingResourceRule code](https://github.com/android/architecture-components-samples/blob/7f861fd45d158e6277a3c35163c7f663e135b2cf/GithubBrowserSample/app/src/androidTest/java/com/android/example/github/util/DataBindingIdlingResourceRule.kt)
     [DataBindingIdlingResource code](https://github.com/android/architecture-components-samples/blob/7f861fd45d158e6277a3c35163c7f663e135b2cf/GithubBrowserSample/app/src/androidTest/java/com/android/example/github/util/DataBindingIdlingResource.kt)
 3. 테스트 클래스에서 직접 값을 조작할 LiveData 선언
@@ -179,17 +181,17 @@ private fun launchActivity(): ActivityScenario<SampleActivity> {
 
 <br>
 
-이제 테스트 함수 내부를 구현하고, 테스트를 실행합니다! 
+이제 테스트 함수 내부를 구현하고, 테스트를 실행합니다!
 ``` kotlin
  @Test
  fun login_hideEmailInput() {
   isLoginText.value = true
   launchActivity()
-	
+
   // visibility = gone
   onView(withId(R.id.email)).check(matches(not(isDisplayed())))
  }
-    
+
  @Test
  fun logout_showEmailInput() {
   isLoginTest.value = false
@@ -223,7 +225,7 @@ class HiltTestActivity: AppCompatActivity()
 ```
 
 
-Fragment를 띄울 때 사용했던 launchFragmentInContainer 대신 `launchFragmentInHiltContainer` 함수를 작성합니다. 
+Fragment를 띄울 때 사용했던 launchFragmentInContainer 대신 `launchFragmentInHiltContainer` 함수를 작성합니다.
 `launchFragmentInHiltContainer` 함수는 HiltTestActivity를 이용하여 Fragment를 화면에 띄워줍니다.
 
 ``` kotlin
