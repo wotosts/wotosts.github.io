@@ -8,6 +8,8 @@ search: false
 
 $link-color: #0f6b85;
 $text-color: #303030;
+$primary-color: #33A2E1;
+$footer-background-color: #0A354D;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'contrast' }}"; // skin
 @import "minimal-mistakes"; // main partials
