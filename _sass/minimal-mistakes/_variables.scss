@@ -13,7 +13,7 @@ $paragraph-indent: false !default; // true, false (default)
 $indent-var: 1.3em !default;
 
 /* system typefaces */
-$serif: "Gowun Dodum", Georgia, Times, serif;
+$serif: "Gowun Batang", Georgia, Times, serif;
 $sans-serif: "Gowun Batang", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
   "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
@@ -156,8 +156,8 @@ $max-width: $x-large !default;
    ========================================================================== */
 
 $right-sidebar-width-narrow: 200px !default;
-$right-sidebar-width: 300px !default;
-$right-sidebar-width-wide: 400px !default;
+$right-sidebar-width: 240px !default;
+$right-sidebar-width-wide: 300px !default;
 
 /*
    Other
