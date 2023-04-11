@@ -1,5 +1,9 @@
 ---
 title: "[Android] Compose CollapsingAppBar 만들기"
+categories:
+- Android
+tags:
+- compose
 ---
 
 Compose에는 CollapsingToolbarLayout이 없습니다.
@@ -9,7 +13,7 @@ Compose에는 CollapsingToolbarLayout이 없습니다.
 
 ## M3 TopAppBar
 
-비슷한 동작을 하는 Composable로 [Material3의 TopAppBar](https://m3.material.io/components/top-app-bar/overview)를 사용할 수도 있습니다. 
+비슷한 동작을 하는 Composable로 [Material3의 TopAppBar](https://m3.material.io/components/top-app-bar/overview)를 사용할 수도 있습니다.
 
 
 문서상으로 TopAppBar 종류는 4가지가 있고
@@ -18,7 +22,7 @@ Compose에는 CollapsingToolbarLayout이 없습니다.
 
 4가지 모두 구현에 scrollBehavior를 추가할 수 있습니다.
 
-CollapsingToolbarLayout에서 사용하던 scrollBehavior와 거의 동일합니다. 
+CollapsingToolbarLayout에서 사용하던 scrollBehavior와 거의 동일합니다.
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -36,22 +40,20 @@ fun TopAppBar(
 
 ScrollBehavior의 동작은 3가지
 
-
-| <img src="assets/images/2023-04-11/topappbar_exitutilcollapsed.gif" /> | <img src="assets/images/2023-04-11/topappbar_exituntillcollapsed.gif"/> | <img src="assets/images/2023-04-11/topappbar_pin.gif"/>| 
-| -------- | -------- | -------- |
-|`exitUntilCollapsedScroll`|`enterAlwaysScroll`|`pinnedScroll`|
-| 스크롤이 최상단에 있을 때만 앱바가 열리고 닫힘     | 스크롤을 아래로 내리면 스크롤 위치 상관없이 앱바가 열림     | 앱바 안열림     |
-
+| <img src='/assets/images/2023-04-11/topappbar_exitutilcollapsed.gif' /> | <img src='/assets/images/2023-04-11/topappbar_exituntillcollapsed.gif'/> | <img src= '/assets/images/2023-04-11/topappbar_pin.gif' /> |   
+|:--------:| :--------: | :---------: |
+|`exitUntilCollapsedScroll`|`____enterAlwaysScroll____`  |  `_______pinnedScroll_______`| 
+| 스크롤이 최상단에 있을 때만 앱바가 열리고 닫힘           | 스크롤을 아래로 내리면 스크롤 위치 상관없이 앱바가 열림  |                   앱바 안열림 |
 
 
 
-  
+
 <br>
 
 Compose 로는 아래처럼 작성하여 사용할 수 있습니다.
 
 ```kotlin
-val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior() 
+val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
 Scaffold(
 	topBar = { TopAppBar(scrollBehavior = scrollBehavior, ..) } //CollapsingToolbarLayout
@@ -64,8 +66,8 @@ Scaffold(
 
 View에서 CollapsingToolbarLayout은 보통 아래와 같은 형태로 사용했습니다.
 
-TopAppBar와의 차이는 AppBarLayout의 유무입니다. 
-View에서 위와 같은 UI를 구현하려면 아래와 같이 여러 계층구조가 필수였으나, Compose는 훨씬 간단하게 사용할 수 있습니다. 
+TopAppBar와의 차이는 AppBarLayout의 유무입니다.
+View에서 위와 같은 UI를 구현하려면 아래와 같이 여러 계층구조가 필수였으나, Compose는 훨씬 간단하게 사용할 수 있습니다.
 
 ```xml
 <CoordinatorLayout>
@@ -95,7 +97,7 @@ Compose의 TopAppBar는 사이즈와 같은 스펙이 지정되어 있어서, �
 	<li> AppBar의 배경이 추가될 수 있습니다.  </li>
 </div>
 
-TopAppBar를 사용하면 타이틀 동작은 가능하지만, 월~일 버튼은 접히지 않고 남아있게 됩니다. 
+TopAppBar를 사용하면 타이틀 동작은 가능하지만, 월~일 버튼은 접히지 않고 남아있게 됩니다.
 
 ![]({{ 'assets/images/2023-04-11/ui_requirement.png' | relative_url }})
 
@@ -120,7 +122,7 @@ M3 TopAppBar 의 코드를 이용하여 CollapsingAppBar를 만들어봅시다!!
 
 이들을 원하는대로 배치하기 위해 커스텀 레이아웃을 만듭니다.
 
-우선 필요한 값들을 받는 CollapsingAppBar를 선언합니다. 
+우선 필요한 값들을 받는 CollapsingAppBar를 선언합니다.
 (xml CollapsingToolbarLayout과 비슷한 속성들을 가지도록 했어요.)
 
 title만 필요한 상황이기 때문에 ExpandedTitle, CollapsedTitle을 별도로 받지 않고 title: string만 받습니다.
@@ -150,7 +152,7 @@ fun CollapsingAppBar(
 
 ```kotlin
 collapsedTitle: @Composable () → Unit,
-expandedTitle: @Composable () → Unit 
+expandedTitle: @Composable () → Unit
 ```
 
 
@@ -161,10 +163,10 @@ expandedTitle: @Composable () → Unit
 
 
 Collasping 동작이 가능한 AppBar를 만드는 방법은 여러가지가 있겠지만, 스크롤 처리를 위해서 M3의 `TopAppBarScrollBehavior`를 사용합니다.
-보통은 AppBar 아래쪽 컨텐츠에 scroll 가능한 UI(LazyList)가 오고,  이 UI의 스크롤을 시작하기 전에 AppBar를 먼저 접어주어야 하기 때문이에요. 
+보통은 AppBar 아래쪽 컨텐츠에 scroll 가능한 UI(LazyList)가 오고,  이 UI의 스크롤을 시작하기 전에 AppBar를 먼저 접어주어야 하기 때문이에요.
 
 
-TopAppBarScrollBehavior는 아래와 같은 interface 이며, 여기에서 `state`와 `nestedScrollConnection`을 사용할 예정입니다. 
+TopAppBarScrollBehavior는 아래와 같은 interface 이며, 여기에서 `state`와 `nestedScrollConnection`을 사용할 예정입니다.
 
 ```kotlin
 @ExperimentalMaterial3Api
@@ -243,8 +245,8 @@ class TopAppBarState(
 우선 scrollBehavior.state.heightOffsetLimit 값을 지정해줍니다.
 이 코드는 TopAppBar의 내부 구현을 따라가다보면 만날 수 있는 코드에요.
 
-`collapsingContentHeight`는 파란 영역의 높이값을 저장한 변수입니다. 
-Composable 구성이 끝났을 때 collapsingContentHeight의 값을 알 수 있고, 이를 이용하여 offsetLimit의 값을 지정해줍니다. 
+`collapsingContentHeight`는 파란 영역의 높이값을 저장한 변수입니다.
+Composable 구성이 끝났을 때 collapsingContentHeight의 값을 알 수 있고, 이를 이용하여 offsetLimit의 값을 지정해줍니다.
 
 툴바 아래 접히는 영역의 사이즈입니다.  (파란 영역 사이즈 - 빨간 영역 사이즈)
 
@@ -314,7 +316,7 @@ fun CollapsingAppBar(
         )
     } else {
         Modifier
-    }	
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -442,7 +444,7 @@ expandedTitle과 collapsedTitle에는 alpha가 적용되어있는데, AppBar 상
 <br>
 <br>
 
-이제 자식 Composable들을 측정합니다. 
+이제 자식 Composable들을 측정합니다.
 Layout() Composable에 전달되는 MeasurePolicy.measure 함수는 measurables와 constraints를 받는데,
 4개 자식 Composable에 대한 measurable을 찾아서 측정하면 각각의 크기를 알 수 있습니다.
 
@@ -474,7 +476,7 @@ Surface(
 
 <br>
 
-CollapsingAppBar는 스크롤 동작 중에 높이가 변경됩니다. 
+CollapsingAppBar는 스크롤 동작 중에 높이가 변경됩니다.
 
 변경된 높이는 collapsingContentHeight(최대 높이) - scrollBehavior.state.scrollOffset 를 이용할 수 있고, 이 값이 currentHeight가 됩니다.
 
@@ -498,7 +500,7 @@ Surface(
             val currentHeight =
                 collapsingContentHeight + scrollBehavior.state.heightOffset
 
-            
+
 		layout(maxWidth, currentHeight.toInt()) {
                 ccPlaceable.placeRelative(
                     0, scrollBehavior.state.heightOffset.roundToInt()
@@ -517,7 +519,7 @@ Surface(
     }
 ```
 
-layout() 함수를 통해 자식 Composable을 배치합니다. x 값은 중요하지 않고.. y값이 중요합니다. 
+layout() 함수를 통해 자식 Composable을 배치합니다. x 값은 중요하지 않고.. y값이 중요합니다.
 - collapsingContent는 y는 0부터 현재 스크롤 offset
 - toolbar는 최상단
 - expandedTitle 은 toolbar 바로 아래 + 현재 스크롤 offset
@@ -540,6 +542,8 @@ CollapsingAppBar가 완성되었고, TopAppBarScrollBehavior를 적용하면 아
 
 
 pinned 는 생략...
+
+완성 코드는 [여기](https://gist.github.com/wotosts/cb38c0e293d4ebcf5bdd34790b7e7169){: .btn .btn--success .btn--small}!
 
 
 
