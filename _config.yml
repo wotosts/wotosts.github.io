@@ -187,8 +187,9 @@ whitelist:
 comments:
   provider: "utterances"
   utterances:
+    repo: "wotosts/wotosts.github.io"
     theme: "github-light"
-    issue_term: "pathname"
+    issue_term: "title"
     label: "comment"
 
 og_image                 : "/assets/profile.png"
