@@ -1,5 +1,9 @@
 ---
 title: "[Android] CollapsingToolbarLayout 처럼 MotionLayout 사용하기"
+categories:
+- Android
+tags:
+- ui
 ---
 
 <div class="notice--success">
@@ -66,7 +70,7 @@ MotionLayout은 애니메이션 처리를 도와주는 레이아웃입니다.
 MotionLayout의 기본적인 사용법은 안드로이드 공식페이지를 참고해주세요.
 
 
-CollapsingToolbarLayout은 이를 감싸는 AppBarLayout의 스크롤 offset 값의 변화에 따라 자식 뷰와 타이틀에 변화를 줍니다. MotionLayout 또한 progress 값으로 애니메이션 진행을 조절할 수 있습니다. 
+CollapsingToolbarLayout은 이를 감싸는 AppBarLayout의 스크롤 offset 값의 변화에 따라 자식 뷰와 타이틀에 변화를 줍니다. MotionLayout 또한 progress 값으로 애니메이션 진행을 조절할 수 있습니다.
 
 CollapsingToolbarLayout을 사용했을 때와 동일하게 스크롤 상태에 따라 MotionLayout 애니메이션 진행을 조절하기 위해서, 다음 구조는 동일하게 유지합니다.
 
@@ -125,7 +129,7 @@ MotionCollapsingToolbarLayout을 CollapsingToolbarLayout 위치에 넣고, Toolb
 ```
 
 
-CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체적으로 타이틀을 그려주었지만, 위에서 만든 MotionCollapsingToolbarLayout은 불가능하기 때문에 TextView를 추가하였습니다. 
+CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체적으로 타이틀을 그려주었지만, 위에서 만든 MotionCollapsingToolbarLayout은 불가능하기 때문에 TextView를 추가하였습니다.
 
 <br>
 이제 MotionCollapsingToolbarLayout에 적용할 description.xml을 만들어 보겠습니다.
@@ -140,7 +144,7 @@ CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체�
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
-      
+
         <!-- from 24sp -->
         <Constraint
             android:id="@+id/title"
@@ -162,13 +166,13 @@ CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체�
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"/>
-      
+
         <!-- to 18sp -->
       	<Constraint
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleX="0.75" 
+            android:scaleX="0.75"
             android:scaleY="0.75"
             android:transformPivotX="0dp"
             android:transformPivotY="12dp"
@@ -183,7 +187,7 @@ CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체�
         app:constraintSetStart="@id/start" />
 </MotionScene>
 ```
-애니메이션을 원하는 뷰는 Toolbar, TextView 입니다. 
+애니메이션을 원하는 뷰는 Toolbar, TextView 입니다.
 * Toolbar는 높이를 펼쳤을 때 값 ~ 접혔을 때 값 으로 변경되게끔 합니다.
 * TextView는 scale을 통해 텍스트 사이즈가 변경되도록 합니다.
 
@@ -192,7 +196,7 @@ CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체�
 ``` xml
 ...
 <MotionCollapsingToolbarLayout
-    	app:layoutDescription="@xml/description" 
+    	app:layoutDescription="@xml/description"
        ...>
 </MotionCollapsingToolbarLayout>
 ...
@@ -218,10 +222,10 @@ CollapsingToolbar에서는 TextView를 별도로 추가하지 않아도 자체�
 		<td><img src="/assets/images/Screenshot_1646045473.png"/></td>
 	</tr>
 	</table>
-	
+
 <br>
 <br>
-CollapsingToolbar로 만들 수 없는 부분이 있듯 MotionLayout을 통해서도 변경할 수 없는 부분이 있습니다. 위 예시에서도 MotionLayout으로는 타이틀의 textAppearance를 변경할 수 없어서 scale을 사용한 것을 볼 수 있습니다. 
+CollapsingToolbar로 만들 수 없는 부분이 있듯 MotionLayout을 통해서도 변경할 수 없는 부분이 있습니다. 위 예시에서도 MotionLayout으로는 타이틀의 textAppearance를 변경할 수 없어서 scale을 사용한 것을 볼 수 있습니다.
 
 하지만 원하는 UI를 만들었으니 만족합니다. 상황에 맞는 적절한 layout을 사용하세요~
 <br>

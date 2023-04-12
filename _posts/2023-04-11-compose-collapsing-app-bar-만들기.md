@@ -4,6 +4,7 @@ categories:
 - Android
 tags:
 - compose
+- ui
 ---
 
 Compose에는 CollapsingToolbarLayout이 없습니다.
@@ -42,7 +43,7 @@ ScrollBehavior의 동작은 3가지
 
 | <img src='/assets/images/2023-04-11/topappbar_exitutilcollapsed.gif' /> | <img src='/assets/images/2023-04-11/topappbar_exituntillcollapsed.gif'/> | <img src= '/assets/images/2023-04-11/topappbar_pin.gif' /> |   
 |:--------:| :--------: | :---------: |
-|`exitUntilCollapsedScroll`|`____enterAlwaysScroll____`  |  `_______pinnedScroll_______`| 
+|`exitUntilCollapsedScroll`|`____enterAlwaysScroll____`  |  `_______pinnedScroll_______`|
 | 스크롤이 최상단에 있을 때만 앱바가 열리고 닫힘           | 스크롤을 아래로 내리면 스크롤 위치 상관없이 앱바가 열림  |                   앱바 안열림 |
 
 
