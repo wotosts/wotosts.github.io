@@ -1,7 +1,6 @@
 ---
 title: "[Android] OnBackPressed 정리하기"
 categories:
-- ''
 - Android
 tags:
 - 기타
@@ -15,15 +14,15 @@ Android 13(API 33, 티라미수) 이상의 버전에서는 `OnBackPressedDispatc
 
 
 ## OnBackPressedDispatcher
-ComponentActivity에서는 `OnBackPressedDispatcher`를 이용하여 뒤로가기 동작을 처리합니다. 
+ComponentActivity에서는 `OnBackPressedDispatcher`를 이용하여 뒤로가기 동작을 처리합니다.
 
 일반적으로 onBackPressed() 오버라이딩 하지 않고 화면 종료로만 사용하는 경우에는,
 onBackPressed() 대신 onBackPressedDispatcher.onBackPressed()를 호출하여 동작을 대체할 수 있습니다.
 
-* 콜백을 직접 달아주지 않는 경우에는 <b>화면 종료</b>라는 기본 동작을 수행을 수행합니다. 
-ComponentActivity에 이미 fallbackOnBackPressed 콜백 이 구현이 되어있기 때문입니다. 
+* 콜백을 직접 달아주지 않는 경우에는 <b>화면 종료</b>라는 기본 동작을 수행을 수행합니다.
+ComponentActivity에 이미 fallbackOnBackPressed 콜백 이 구현이 되어있기 때문입니다.
 
-* 활성화된 콜백이 없는 경우에 동작합니다. 
+* 활성화된 콜백이 없는 경우에 동작합니다.
 ```java
 private final OnBackPressedDispatcher mOnBackPressedDispatcher =
             new OnBackPressedDispatcher(new Runnable() {
@@ -70,7 +69,7 @@ ComponenetActivity.onBackPressed()도 내부적으로 onBackPressedDispatcher를
 <br>
 
 ### 커스텀 뒤로가기 동작
-기존에는 뒤로가기 동작 커스텀을 위해서 onBackPressed()를 오버라이딩 하는 방법을 사용했습니다. 
+기존에는 뒤로가기 동작 커스텀을 위해서 onBackPressed()를 오버라이딩 하는 방법을 사용했습니다.
 OnBackPressedDispatcher를 이용하면 복잡한 뒤로가기 동작을 조금 더 쉽게 사용할 수 있을 것 같아요.
 
 커스텀 뒤로가기 동작을 처리하기 위해 아래와 같이 OnBackPressedCallback 을 등록합니다.
@@ -187,7 +186,7 @@ enabled 설정에 유의해야 합니다.
 
 ## Predictive Back gesture
 Android 13부터 `Predictive back gesture`가 추가되었습니다.
-좌우 스와이프 등을 수행했을 때, 유저가 정말로 뒤로가기 동작을 원하는지를 판단하기 위함입니다. 
+좌우 스와이프 등을 수행했을 때, 유저가 정말로 뒤로가기 동작을 원하는지를 판단하기 위함입니다.
 
 ![](https://developer.android.com/static/images/about/versions/13/predictive-back-nav-home.gif){: .align-center}
 
@@ -197,7 +196,7 @@ Android 13부터 `Predictive back gesture`가 추가되었습니다.
 
 >User research shows that people are most frustrated when System Back unexpectedly returns them to Launcher, forcing them to reopen the app.
 
->유저 리서치에 따르면, 시스템 뒤로가기가 유저가 런처로 이동되고(예상치 못한 동작) 앱을 다시 열게 되는 상황에서 유저들이 가장 실망감을 느낍니다. 
+>유저 리서치에 따르면, 시스템 뒤로가기가 유저가 런처로 이동되고(예상치 못한 동작) 앱을 다시 열게 되는 상황에서 유저들이 가장 실망감을 느낍니다.
 
 
 Android 13에서 Predictive back gesture 는 개발자 옵션에서 사용 설정을 할 수 있습니다.
@@ -212,13 +211,13 @@ Android 13에서 Predictive back gesture 는 개발자 옵션에서 사용 설�
 ```
 
 
-Predictive back gesture를 핸들링 하기 위에서는 뒤로가기 네비게이션 이벤트를 인터셉트가 필요한데, 
+Predictive back gesture를 핸들링 하기 위에서는 뒤로가기 네비게이션 이벤트를 인터셉트가 필요한데,
 onBackPressedDispatcher를 사용하거나 OnBackInvokedDispatcher를 사용해야 합니다.
 
 
 
 `OnBackPressedDispatcher`
-* AndroidX 사용 시 
+* AndroidX 사용 시
 * AndroidX Activity 1.6.0-alpha05 업데이트 필수
 
 `OnBackInvokedDispatcher`
@@ -241,10 +240,10 @@ OnBackPressedDispatcher 또는 OnBackInvokedDispatcher 로 업데이트를 하�
 
 
 ## OnBackInvokedDispatcher
-Api 33 부터 사용 가능합니다. 때문에, 사용 시 버전 분기가 필요합니다. 
-OnBackPressedDispatcher를 사용할 수 없는 경우에 사용합니다. 
+Api 33 부터 사용 가능합니다. 때문에, 사용 시 버전 분기가 필요합니다.
+OnBackPressedDispatcher를 사용할 수 없는 경우에 사용합니다.
 
-OnBackInvokedDispatcher는 `android:enableOnBackInvokedCallback="true"` 로 설정해야 정상적으로 동작합니다. OnBackPressedDisptacher는 이 값과 상관없이 항상 동작합니다. 
+OnBackInvokedDispatcher는 `android:enableOnBackInvokedCallback="true"` 로 설정해야 정상적으로 동작합니다. OnBackPressedDisptacher는 이 값과 상관없이 항상 동작합니다.
 
 
 ```kotlin
