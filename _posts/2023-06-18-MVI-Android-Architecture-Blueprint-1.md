@@ -1,10 +1,10 @@
 ---
-title: "[Android] MVI와 Android Architecture Blueprint - 1"
+title: "[Android] MVI와 Android Architecture Blueprint"
 categories:
 - Android
 tags:
 - Architecture
-- software
+- MVI
 ---
 
 MVI 개념정리 1편입니다.
@@ -137,7 +137,7 @@ val reducer = { prevUiState, newState ->
     - 모델의 수정이 불가능하며, 모델이 만들어지는 곳은 단 한 곳 뿐입니다.
     - 다른 스레드에서 모델을 수정하게 되어 일어날 수 있는 여러 상황을 방지할 수 있습니다.
 - 용이한 디버깅
-    - 오류가 발생한 시점의 상태를 확인할 수 있음.
+    - 오류가 발생한 시점의 상태를 확인할 수 있어, 추적이 용이합니다.
 - 테스트 유용성
     - 메소드의 결과가 예상되는 상태가 맞는지 확인하면 됩니다.
 
@@ -151,7 +151,50 @@ val reducer = { prevUiState, newState ->
 
 <br>
 <br>
+
+## MVI는 MVVM의 어떤 문제를 개선하는가?
+
+MVI에서 State를 변경할 수 있는 방법은 Intent를 발생시켜 새로운 State를 생성하는, 단방향 흐름을 타는 것 뿐입니다. 
+
+- 즉, **State는 불변**.
+- 또한, View에 그려주는, View가 확인할 수 있는 **state는 단 하나.**
+
+1. Multiple State → Single State
+    
+    안드로이드 MVVM 패턴의 구현은 보통 View(xml), DataBinding, ViewModel 등을 이용합니다.
+    
+    여기서, View와 비즈니스 로직(viewModel, domain, data layer 등)이 서로 다른 state를 가질 수 있기 때문에 개발자가 이들을 동기화 시켜주는 과정이 필요합니다.<br>
+		(예: 유명한 예시로.. 분명 ViewModel은 로딩이 끝난 상태를 가지고 있으나, View는 로딩을 표시하는... 직접 격어본... 그것이 있습니다.)
+    
+    → MVI의 state는 단 하나로, **여러 state를 동기화 시킬 필요가 없어, 상태 제어가 간단해집니다.**
+    
+2. Side Effect
+    
+     Side effect(API 호출 등)는 결과를 예측하기가 쉽지 않은데, 
+    
+    → MVI 에서는 side effect의 결과로 intent로 발생시켜서 새로운 state를 생성할 수 있기 때문에, Side effect의 결과도 예측 가능해집니다. 
+    
+
 <br>
+
+~~이 둘을 이렇게 비교한다는게 이상하지만~~
+
+| - | MVVM | MVI |
+| --- | --- | --- |
+| View | * UI <br> * 사용자와 상호작용 | * UI <br>* 사용자와 상호작용 → Intent 발생<br>* 상태에 따라 UI 렌더링 |
+| ViewModel | * View에 보여줄 데이터 가공을 위한 비즈니스 로직 포함<br>* 바인딩을 통해 UI 요소를 업데이트<br>* AAC ViewModel은 안드로이드 수명주기에 맞추어 View에 보여줄 데이터를 관리(홀더) | * state 홀더로 사용<br>  intent → 도메인 또는 데이터 레이어와 상호작용하면서 발생한 각각의 결과를 State로 맵핑 |
+| Model | * 앱에서 사용되는 데이터와 데이터 처리 로직 | * 앱의 상태 자체 |
+
+<br>
+
+MVI 에는 ViewModel 이라는 개념이 없지만, 안드로이드 공식에서 상태 홀더로 ViewModel을 사용하는 방법도 안내하고 있기 때문에 포함하여 비교해보았습니다. 
+MVI에서도 ViewModel에 데이터 가공 로직을 포함할 수 있습니다. 사용하기 나름인 것 같아요.
+
+
+
+<br>
+
+---
 
 # 안드로이드에서의 MVI
 
@@ -189,7 +232,7 @@ val reducer = { prevUiState, newState ->
     - 사이드 이펙트의 결과가 새로운 Intent가 되어 Model을 변경할 수 있습니다.
 
 
-실제로 MVI를 적용했을 때 각 요소의 경계가 어디까지다이며, 이건 이런 역할을 하니까 무조건 이거야! 라고 정의할 수는 없을 것 같아요.
+실제로 MVI를 적용했을 때 각 요소의 경계가 어디까지이며, 이건 이런 역할을 하니까 무조건 이거야! 라고 정의할 수는 없을 것 같아요.
 회바회, 코바코...
 
 
