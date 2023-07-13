@@ -6,7 +6,7 @@ title: 사이드 프로젝트 배포! - `사부작`
 <div align = "center" class=".notice">
 <a href = "https://play.google.com/store/apps/details?id=com.wotosts.naggingfriends">
 	<figure>
-  <img src = "/assets/images/2023-07-12/side_project_사부작.png" alt="사부작"/>
+  <img src = "/assets/images/2023-07-12/side_project_banner.png" alt="사부작"/>
   <figcaption>클릭 시 스토어로 이동합니다.</figcaption>
 </figure>
 </a>
@@ -71,7 +71,7 @@ Firebase firestore에 유저 데이터를 저장하는 방식으로 개발을 �
 
 | 툴바 | 체크리스트 | 통계 |
 |-|-|-|
-|<img src="/assets/images/2023-04-11/topappbar_exitutilcollapsed.gif/">|<img src="/assets/images/2023-07-12/goal_checklist.gif"/>|<img src="/assets/images/2023-07-12/statistics.png"/>|
+|<img src="/assets/images/2023-04-11/topappbar_exitutilcollapsed.gif"/>|<img src="/assets/images/2023-07-12/goal_checklist.gif"/>|<img src="/assets/images/2023-07-12/statistics.png"/>|
 
 그리고.. 머리 뽀개지는 줄 알았던 알람 정책 등등... 😇
 
