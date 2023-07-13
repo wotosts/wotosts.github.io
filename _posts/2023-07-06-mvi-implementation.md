@@ -8,7 +8,7 @@ tags:
 ---
 
 MVI 개념정리 2편입니다.<br><br>
-[지난 포스트](http://https://wotosts.github.io/android/MVI-Android-Architecture-Blueprint-1/)에서 MVI 의 개념 및 Android 공식 Architecture blueprint를 MVI와 연관지어 살펴보았는데, <br>
+[지난 포스트](https://wotosts.github.io/android/MVI-Android-Architecture-Blueprint-1/)에서 MVI 의 개념 및 Android 공식 Architecture blueprint를 MVI와 연관지어 살펴보았는데, <br>
 이번에는 다른 방식의 MVI 구현 방법을 살펴봅니다. 
 {: .notice--success}
 
