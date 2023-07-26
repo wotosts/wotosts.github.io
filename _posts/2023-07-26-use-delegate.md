@@ -85,8 +85,16 @@ Association은 아래 방식으로 이룰 수 있습니다.
 
 Delegation pattern은 상속과 마찬가지로 코드를 재사용할 수 있는 패턴입니다. 하지만 상속과 달리 다른 객체에 하고자 하는 동작을 위임합니다.
 
+
+상속은 아시듯, 부모의 것을 자식들이 사용하는 것이 가능해집니다. 
 ![]({{ 'assets/images/2023-07-24/inheritance.png' | relative_url }})
-![]({{ 'assets/images/2023-07-24/association.png' | relative_url }})
+
+위임은 아래와 같은 방식입니다.
+
+* 나는 기능 A를 할 수 있어!
+* 하지만 내가 기능 A를 직접 수행하지는 않을거야
+* 기능 A를 수행하는 B에게 대신 수행하도록 할거야
+
 
 ## Delegate 사용 예시
 
