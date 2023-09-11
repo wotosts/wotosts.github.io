@@ -4,7 +4,7 @@ tags:
 - 기타
 - 회고
 categories:
-- 사이드프로젝트
+- SideProject
 ---
 
 ## 사부작: 습관, 목표 관리 앱
