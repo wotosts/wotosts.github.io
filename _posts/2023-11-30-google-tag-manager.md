@@ -6,8 +6,9 @@ tags:
 - GTM
 ---
 
-비교적 자유롭게 이벤트 수집 설정이 가능한 GTM. 사용 방법을 정리합니다.  :.notice
-
+<div class = "notice--success">
+비교적 자유롭게 이벤트 수집 설정이 가능한 GTM. 사용 방법을 정리합니다. 
+</div>
 
 ---
 
