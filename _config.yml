@@ -193,3 +193,5 @@ comments:
     label: "comment"
 
 og_image                 : "/assets/profile.png"
+
+github: [metadata]
