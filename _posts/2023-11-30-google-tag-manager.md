@@ -1,6 +1,7 @@
 ---
 title: Android 에서 구글 태그 매니저(GTM) 사용하기
-categories: []
+categories:
+- ETC
 tags:
 - 기타
 - GTM
