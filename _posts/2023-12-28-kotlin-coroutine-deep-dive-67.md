@@ -1,5 +1,5 @@
 ---
-title: "[Kotlin] 스터디 Kotlin coroutine: Deep Dive 6~7장"
+title: "[Kotlin] 스터디 Kotlin coroutine: Deep Dive 6~8장"
 tags:
 - kotlin
 - coroutine
